@@ -2,7 +2,6 @@
 
 /* DarkMode LightMode */
 const themeToggle = document.querySelector('#themeToggle')
-console.log(themeToggle)
 let isDarkMode = false
 themeToggle.addEventListener('click', () => {
     document.body.classList.toggle('dark')
@@ -46,7 +45,6 @@ const fetchCountries = async () => {
         const independentCountries = data.filter(country => { return country.independent || country.independent === undefined })
         const sortCountries = sortedCountries(independentCountries)
         cachedCountries = sortCountries
-        console.log(sortCountries[0])
         return sortCountries
     }
     catch (error) {
@@ -134,7 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         })
     })
-    console.log("Hi! All loaded")
 })
 
 
@@ -232,54 +229,50 @@ const formatLanguage = (languages) => {
 }
 
 
-// When a country is interacted, it displays a detailed page of the country
-countriesContainer.addEventListener('click', async ({ target }) => {
-    try {
-        if (target.classList.contains("country-card") || target.closest('.country-card')) {
+// Do this
+const createCountryDetails = async (data) => {
+    const userinputCountry = data
+    // Fetch Country
+    const result = await fetchCountries()
+    let viewCountry
+    const borderCountries = []
+    result.forEach(country => {
+        if (userinputCountry === country.name) {
+            viewCountry = country
+        }
+    })
 
-            const userinputCountry = target.closest('.country-card').dataset.country
-            // Fetch Country
-            const result = await fetchCountries()
-            let viewCountry
-            const borderCountries = []
-            result.forEach(country => {
-                if (userinputCountry === country.name) {
-                    viewCountry = country
-                }
-            })
+    // Fetch extra details from country
+    const extraDetails = await fetchCountryData(userinputCountry)
 
-            // Fetch extra details from country
-            const extraDetails = await fetchCountryData(userinputCountry)
-            console.log('Extra details', extraDetails.borders)
+    //Create image
+    const IMGelement = document.createElement('IMG')
+    IMGelement.src = viewCountry.flag
 
-            //Create image
-            const IMGelement = document.createElement('IMG')
-            IMGelement.src = viewCountry.flag
+    //Format
+    const languageString = formatLanguage(extraDetails.languages)
+    const nativeString = Object.keys(extraDetails.nativeName).map(key => extraDetails.nativeName[key].common).join(', ')
+    const currenciesString = Object.keys(extraDetails.currency).map(key => extraDetails.currency[key].name)
 
-            //Format
-            const languageString = formatLanguage(extraDetails.languages)
-            const nativeString = Object.keys(extraDetails.nativeName).map(key => extraDetails.nativeName[key].common).join(', ')
-            const currenciesString = Object.keys(extraDetails.currency).map(key => extraDetails.currency[key].name)
-
-            // Create border countries elements
-            const borderCountriesDiv = document.createElement('DIV')
-            borderCountriesDiv.classList.add("border-countries")
-            // Format borders
-            if (extraDetails.borders !== undefined) {
-                result.forEach(country => {
-                    if (extraDetails.borders.includes(country.cca3)) {
-                        borderCountries.push(country.name)
-                    }
-                })
-                borderCountries.forEach(border => {
-                    borderCountriesDiv.insertAdjacentHTML('beforeend', `<span>${border}</span>`)
-                })
+    // Create border countries elements
+    const borderCountriesDiv = document.createElement('DIV')
+    borderCountriesDiv.classList.add("border-countries")
+    // Format borders
+    if (extraDetails.borders !== undefined) {
+        result.forEach(country => {
+            if (extraDetails.borders.includes(country.cca3)) {
+                borderCountries.push(country.name)
             }
-            else {
-                borderCountriesDiv.innerHTML = ''
-            }
+        })
+        borderCountries.forEach(border => {
+            borderCountriesDiv.insertAdjacentHTML('beforeend', `<span data-country-border="${border}">${border}</span>`)
+        })
+    }
+    else {
+        borderCountriesDiv.innerHTML = ''
+    }
 
-            const HMTLstring = `
+    const HMTLstring = `
             <div class="flag-container">${IMGelement.outerHTML}</div>
             <div class="details-container">
                 <h1>${viewCountry.name}</h1>
@@ -305,27 +298,36 @@ countriesContainer.addEventListener('click', async ({ target }) => {
 
 
 
-            // HTML CSS style
+    // HTML CSS style
 
-            // Heading
-            // Hide all heading elements except ..
-            const heading = document.querySelectorAll('[data-heading]')
-            Array.from(heading).forEach(header => {
-                if (header.dataset.heading === 'front') {
-                    header.style.display = 'none'
-                }
-                else if (header.dataset.heading === 'detail') {
-                    header.style.display = 'block'
-                }
-            })
+    // Heading
+    // Hide all heading elements except ..
+    const heading = document.querySelectorAll('[data-heading]')
+    Array.from(heading).forEach(header => {
+        if (header.dataset.heading === 'front') {
+            header.style.display = 'none'
+        }
+        else if (header.dataset.heading === 'detail') {
+            header.style.display = 'block'
+        }
+    })
 
 
-            // Containers
-            countriesContainer.style.display = 'none'
-            const displayCountry = document.querySelector('.country-detailed-page')
-            displayCountry.style.display = 'flex'
-            displayCountry.innerHTML = ''
-            displayCountry.insertAdjacentHTML('beforeend', HMTLstring)
+    // Containers
+    countriesContainer.style.display = 'none'
+    const displayCountry = document.querySelector('.country-detailed-page')
+    displayCountry.style.display = 'flex'
+    displayCountry.innerHTML = ''
+    displayCountry.insertAdjacentHTML('beforeend', HMTLstring)
+}
+
+// When a country is interacted, it displays a detailed page of the country
+countriesContainer.addEventListener('click', ({ target }) => {
+    try {
+        if (target.classList.contains("country-card") || target.closest('.country-card')) {
+            let country = target.classList.contains("country-card") || target.closest('.country-card')
+            console.log(country.dataset.country)
+            createCountryDetails(country.dataset.country)
         }
     }
     catch (error) {
@@ -353,5 +355,14 @@ if (backButton) {
         countriesContainer.style.display = 'grid'
         const displayCountry = document.querySelector('.country-detailed-page')
         displayCountry.style.display = 'none'
+    })
+}
+
+
+const displayCountry = document.querySelector('.country-detailed-page')
+if (displayCountry) {
+    displayCountry.addEventListener('click', ({ target }) => {
+        let country = target.closest('[data-country-border]').dataset.countryBorder
+        createCountryDetails(country)
     })
 }

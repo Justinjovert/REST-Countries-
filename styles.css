@@ -307,6 +307,7 @@ body svg {
     padding: 0.3rem 2rem;
     border: 1px solid lightgray;
     box-shadow: var(--box-shadow);
+    cursor: pointer;
 }
 
 @media screen and (max-width: 1050px) {
