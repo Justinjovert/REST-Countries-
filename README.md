@@ -41,6 +41,8 @@ Users should be able to:
 ### Useful resources
 
 - [Asaeneh's 30 Day of JavaScript](https://github.com/Asabeneh/30-Days-Of-JavaScript)
+- [CSS Scan](https://getcssscan.com/css-box-shadow-examples)
+- [Ionicons](https://ionic.io/ionicons)
 
 
 ## Author
