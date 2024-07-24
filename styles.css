@@ -1,0 +1,329 @@
+body {
+    --neutral-dark-blue-DarkMode: hsl(209, 23%, 22%);
+    --neutral-very-dark-blue-darkMode: hsl(207, 26%, 17%);
+    --neutral-very-dark-blue-LightModeText: hsl(200, 15%, 8%);
+    --neutral-dark-gray-LightMode: hsl(0, 0%, 52%);
+    --transitionDelay: .2s;
+    --background-color: hsl(0, 0%, 98%);
+    --elementColor: white;
+    --textColor: white;
+    --box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    --primary-blue-highlight: #b9e2ff;
+    --fontFamily: 'Nunito Sans';
+    --icoColor: black;
+
+    font-family: var(--fontFamily);
+    padding: 0;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: all var(--transitionDelay);
+}
+
+body.dark {
+    --elementColor: hsl(209, 23%, 22%);
+    --background-color: hsl(207, 26%, 17%);
+    --text-color: white;
+    --box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    --primary-blue-highlight: #f37813;
+    --icoColor: white;
+}
+body svg {
+    vertical-align: middle;
+}
+
+.navbar-container {
+    transition: all var(--transitionDelay);
+    display: flex;
+    background-color: var(--elementColor);
+    padding: 1rem 4vw;
+    justify-content: space-between;
+    box-shadow: var(--box-shadow);
+    margin-bottom: 3rem;
+}
+
+.navbar-container>a {
+    padding: 0;
+    margin: 0;
+    font-weight: 800;
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 20px;
+}
+
+.navbar-container svg {
+    width: 16px;
+
+    vertical-align: middle;
+}
+
+.navbar-container svg>path {
+    fill: white;
+}
+
+.navbar-container>button {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: 0;
+    font-weight: 600;
+    cursor: pointer;
+    gap: 5px;
+    color: var(--text-color);
+}
+
+.main-container {
+    padding: 1rem 4vw;
+    color: var(--text-color);
+}
+
+.heading-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.back-button {
+    box-sizing: border-box;
+    padding: .7rem 2rem;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    border: 1px solid lightgray;
+    cursor: pointer;
+    display: none;
+}
+.back-button > button{
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.back-button svg {
+    vertical-align: middle;
+}
+
+.back-button>button {
+    background-color: transparent;
+    border: 0;
+}
+
+.search-container {
+    transition: all var(--transitionDelay);
+    box-sizing: border-box;
+    padding: 0.5rem;
+    border: 0;
+    border-radius: 5px;
+    min-width: 300px;
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    align-items: center;
+    background-color: var(--elementColor);
+    box-shadow: var(--box-shadow);
+}
+
+.search-container>i {
+    padding: 0px 1rem;
+}
+
+.searchbar {
+    box-sizing: border-box;
+    border: 0;
+    outline: 0;
+    padding: 0.5rem;
+    font-size: 14px;
+    background-color: transparent;
+    width: 100%;
+    color: var(--text-color);
+}
+.searchbar::placeholder{
+    color: var(--text-color);
+}
+
+.region-select-wrapper {
+    position: relative;
+    font-size: 16px;
+}
+
+.region-selection-container {
+    width: 160px;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    border: 0;
+    box-shadow: var(--box-shadow);
+    color: black;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all var(--transitionDelay);
+    background-color: var(--elementColor);
+    color: var(--text-color);
+}
+
+.region-selection-container svg {
+    vertical-align: middle;
+}
+
+.region-options-container {
+    position: absolute;
+    margin-top: 5px;
+    border-radius: 5px;
+    background-color: white;
+    width: 192px;
+    padding: 1rem;
+    box-shadow: var(--box-shadow);
+    background-color: var(--elementColor);
+    display: none;
+}
+
+.region-options-container>button {
+    box-sizing: border-box;
+    padding: 0.5rem 1rem;
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin: 0;
+    background-color: transparent;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 400;
+    color: var(--text-color);
+}
+
+.region-options-container>button:hover {
+
+    background-color: var(--primary-blue-highlight);
+}
+
+.countries-container {
+    display: grid;
+    place-content: center;
+    width: 100%;
+    grid-template-columns: repeat(auto-fill, 220px);
+    gap: 3rem;
+    font-size: 14px;
+}
+
+.country-card {
+    width: 220px;
+    height: 320px;
+    box-shadow: var(--box-shadow);
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    background-color: var(--elementColor);
+    color: var(--text-color);
+    transition: all var(--transitionDelay);
+    border: 0;
+}
+
+.country-flag {
+    height: calc(100%/2);
+    background-color: gray;
+    border-top-left-radius: inherit;
+    border-top-left-radius: inherit;
+}
+
+.country-flag > img{
+    width: 100%;
+    height: 100%;
+}
+
+.country-card-details {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.country-card-details>h3 {
+    padding-bottom: .5rem;
+    margin: 0;
+}
+
+.country-card-details>span {
+    margin: 0.2rem 0;
+}
+
+.country-detailed-page {
+    display: flex;
+    gap: calc(4vw + 3rem);
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    display: none;
+}
+
+.flag-container {
+    min-width: 450px;
+    width: 500px;
+    aspect-ratio: 4/3;
+}
+
+.flag-container>img {
+    width: 100%;
+    height: 100%;
+}
+
+.details-container {
+    flex-grow: 1;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    color: var(--text-color);
+}
+
+.about-country {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: calc(1vw + 1rem);
+}
+
+.details-country {
+    display: flex;
+    flex-direction: column;
+}
+
+.details-country>span {
+    margin: 3px 0;
+}
+
+.border-countries-container {
+    padding: 2rem 0;
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
+.border-countries>span {
+    display: inline-block;
+    margin: 5px 5px;
+    padding: 0.3rem 2rem;
+    border: 1px solid lightgray;
+    box-shadow: var(--box-shadow);
+}
+
+@media screen and (max-width: 1050px) {
+    .about-country {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 780px) {
+    .country-detailed-page {
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .flag-container {
+        min-width: 0;
+        width: 100%;
+    }
+}

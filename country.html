@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- displays site properly based on user's device -->
+
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+    <link rel="stylesheet" href='styles.css'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+        rel="stylesheet">
+
+    <script src="./main.js" defer></script>
+
+    <title>Frontend Mentor | REST Countries API</title>
+
+
+</head>
+
+<body>
+
+    <nav class="navbar-container">
+        <h1>Where in the world?</h1>
+        <button id="themeToggle">
+            <i><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512" width ="16px">
+                    <path
+                        d="M160 136c0-30.62 4.51-61.61 16-88C99.57 81.27 48 159.32 48 248c0 119.29 96.71 216 216 216 88.68 0 166.73-51.57 200-128-26.39 11.49-57.38 16-88 16-119.29 0-216-96.71-216-216z"
+                        fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="32" />
+                </svg></i>
+            Dark Mode
+        </button>
+    </nav>
+    <main class="main-container">
+        <section class="heading-container">
+            <div class="back-button">
+                <i>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512" width="20px"
+                        height="20px">
+                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="48" d="M244 400L100 256l144-144M120 256h292" />
+                    </svg>
+                </i>
+                <button>Back</button>
+            </div>
+        </section>
+        <section class="country-detailed-page">
+            <div class="flag-container"><img src="./images/belgium.png"></div>
+            <div class="details-container">
+                <h1>Belgium</h1>
+                <div class="about-country">
+                    <div class="details-country">
+                        <span><b>Native Name:</b> Belgie</span>
+                        <span><b>Population:</b> 11,319,511</span>
+                        <span><b>Region:</b> Europe</span>
+                        <span><b>Sub Region:</b> Western Europe</span>
+                        <span><b>Capital: Brussels</b></span>
+                    </div>
+                    <div class="details-country">
+                        <span><b>Top Level Domain:</b> .be</span>
+                        <span><b>Currencies:</b> Euro</span>
+                        <span><b>Languages:</b> Dutch, French, German</span>
+                    </div>
+                </div>
+                <div class="border-countries-container">
+                    <span><b>Border Countries:</b></span>
+                    <div class="border-countries">
+                        <span>France</span>
+                        <span>Germany</span>
+                        <span>Netherlands</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
